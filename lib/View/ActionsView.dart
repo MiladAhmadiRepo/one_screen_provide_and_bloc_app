@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:one_screen_packages/Constants/BaseConstants.dart';
 import 'package:one_screen_packages/Model/JokeModel.dart';
-import 'package:one_screen_packages/View/Widgets/LoadingWidget.dart';
-import 'package:one_screen_packages/View/Widgets/SetupOrPunchlineText.dart';
+import 'package:one_screen_packages/Widgets/ContainBox.dart';
+import 'package:one_screen_packages/Widgets/LoadingWidget.dart';
+import 'package:one_screen_packages/Widgets/SetupOrPunchlineText.dart';
+import 'package:one_screen_packages/Widgets/StaticText.dart';
 import 'package:provider/provider.dart';
-
 import '../Providers/JokeProvider.dart';
 
 class ActionsView extends StatelessWidget {
   const ActionsView({Key? key}) : super(key: key);
+
   //--------------------------------------------------------------------------
 
   @override
@@ -32,12 +35,12 @@ class ActionsView extends StatelessWidget {
   //--------------------------------------------------------------------------
   Widget setupWidget(JokeProvider jokeProvider) {
     JokeModel jokeModel = jokeProvider.getJokeModel;
-    String setupText = (jokeModel.setup ?? "") +" ((Tappable)) ";
-    return setupOrPunchlineText(setupText, () {
-      jokeProvider.loadPunchline();
-    });
+    String setupText = jokeModel.setup ?? "";
+    return ContainBox(
+      SetupOrPunchlineWidget(setupText, clicked: jokeProvider.loadPunchline, visible: true),
+      titleText: "Tappable",
+    );
   }
-
 
   //--------------------------------------------------------------------------
 
@@ -45,12 +48,20 @@ class ActionsView extends StatelessWidget {
     JokeModel jokeModel = jokeProvider.getJokeModel;
     String setupText = jokeModel.setup ?? "";
     String punchlineText = jokeModel.punchline ?? "";
-    return Column(
-      children: [
-        setupOrPunchlineText(setupText, () {}),
-        const SizedBox(height: 50,),
-        setupOrPunchlineText(punchlineText, () {})
-      ],
+    return ContainBox(
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          StaticText(setupText),
+          const SizedBox(
+            height: 25,
+          ),
+          SetupOrPunchlineWidget(
+            punchlineText+BaseConstants.smileText,
+          ),
+        ],
+      ),
+      titleText: "",
     );
   }
 //--------------------------------------------------------------------------
