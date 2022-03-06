@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class BaseConstants {
@@ -21,5 +22,6 @@ class BaseConstants {
    );
   }
   static const String smileText = "     :-)";
+  static String connectivityResult = ConnectivityResult.none.toString();
 
 }

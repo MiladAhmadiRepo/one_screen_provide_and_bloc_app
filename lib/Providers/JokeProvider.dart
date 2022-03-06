@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:one_screen_packages/Api/JokeApi.dart';
+import 'package:one_screen_packages/Constants/BaseConstants.dart';
 import 'package:one_screen_packages/Model/JokeModel.dart';
+import 'package:one_screen_packages/Utils/ConnectivityService.dart';
 
 class JokeProvider with ChangeNotifier {
   final Map<int, String> appState = {
@@ -13,9 +15,19 @@ class JokeProvider with ChangeNotifier {
   String currentState = 'Loading';
   JokeApi jokeApi= JokeApi();
   JokeModel jokeModel=JokeModel();
+  final ConnectivityService _connectivityService;
 
   //----------------------------------------------------------------------------
   JokeProvider() {
+    _connectivityService.connectivityStream.stream.listen((event) {
+      if (event.toString() == BaseConstants.connectivityResult) {
+        print('no internet');
+        //add(NoInternetEvent());
+      } else {
+        print('yes internet');
+        //add(LoadApiEvent());
+      }
+    });
     loading();
   }
   //----------------------------------------------------------------------------
