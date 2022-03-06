@@ -12,21 +12,19 @@ class JokeProvider with ChangeNotifier {
   };
   String currentState = 'Loading';
   JokeApi jokeApi= JokeApi();
-  JokeModel? jokeModel;
+  JokeModel jokeModel=JokeModel();
 
   //----------------------------------------------------------------------------
   JokeProvider() {
-    // setCurrentState(0);
     loading();
   }
-
   //----------------------------------------------------------------------------
   void setCurrentState(int state) => currentState = appState[state]!;
 
   String get getCurrentState => currentState;
 
   //----------------------------------------------------------------------------
-  JokeModel? get getJokeModel => jokeModel;
+  JokeModel  get getJokeModel => jokeModel;
 
   //----------------------------------------------------------------------------
 
@@ -54,6 +52,7 @@ class JokeProvider with ChangeNotifier {
 
 //----------------------------------------------------------------------------
   void restart() {
+    int threeSecond=3;
     Future.delayed(const Duration(seconds: 5), () async {
       await loading();
     });
