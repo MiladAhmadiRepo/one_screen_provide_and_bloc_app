@@ -28,7 +28,7 @@ class App extends StatelessWidget {
       title: 'Flutter Timer',
       home: Scaffold(
         appBar: AppBar(title: const Text('Random joke')),
-        body:  Padding(
+        body:  const Padding(
           padding: EdgeInsets.symmetric(vertical: 100.0),
           child: ActionsView(),
         ),
