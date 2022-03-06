@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:one_screen_bloc_app/View/main_page.dart';
+import 'package:provider/provider.dart';
+
+import 'Providers/JokeProvider.dart';
+import 'View/ActionsView.dart';
+
+
+
 void main() {
-  runApp( App());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => JokeProvider()),
+      ],
+      child: App(),
+
+    ),
+  );
 }
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Timer',
-      theme: ThemeData(
-        primaryColor: Color.fromRGBO(109, 234, 255, 1),
-        colorScheme: ColorScheme.light(
-          secondary: Color.fromRGBO(72, 74, 126, 1),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Random joke')),
+        body:  Padding(
+          padding: EdgeInsets.symmetric(vertical: 100.0),
+          child: ActionsView(),
         ),
       ),
-      home: const MainPage(),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:one_screen_provider_app/View/Widgets/SetupOrPunchlineText.dart';
+import 'package:one_screen_packages/Model/JokeModel.dart';
 import 'package:provider/provider.dart';
-
-import '../Model/JokeModel.dart';
 import '../Providers/JokeProvider.dart';
 import 'Widgets/LoadingWidget.dart';
+import 'Widgets/SetupOrPunchlineText.dart';
 
 class ActionsView extends StatelessWidget {
   const ActionsView({Key? key}) : super(key: key);

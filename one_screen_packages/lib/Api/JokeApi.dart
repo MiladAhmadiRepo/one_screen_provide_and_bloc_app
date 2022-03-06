@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../Constants/BaseConstants.dart';
 import '../Model/JokeModel.dart';
-import '../constants/BaseConstants.dart';
 
 
 class JokeApi{

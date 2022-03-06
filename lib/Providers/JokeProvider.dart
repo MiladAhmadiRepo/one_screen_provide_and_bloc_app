@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../Model/JokeModel.dart';
-import '../api/JokeApi.dart';
+import 'package:one_screen_packages/Api/JokeApi.dart';
+import 'package:one_screen_packages/Model/JokeModel.dart';
 
 class JokeProvider with ChangeNotifier {
   final Map<int, String> appState = {
@@ -32,47 +32,30 @@ class JokeProvider with ChangeNotifier {
 
   Future<void> loading() async {
     setCurrentState(0);
-    print("loading before notifyListeners");
     notifyListeners();
-    print("loading before loadSetup");
-
     await loadSetup();
   }
 
   //----------------------------------------------------------------------------
 
   Future<void> loadSetup() async {
-
     jokeModel = await jokeApi.fetchJoke();
     setCurrentState(1);
-    print("loadSetup after fetchJoke");
     notifyListeners();
-    print("loadSetup after notifyListeners");
-
-
   }
 
   //----------------------------------------------------------------------------
 
   void loadPunchline() {
-    print("loadPunchline before notifyListeners");
-
     setCurrentState(2);
-
-    print("loadPunchline after notifyListeners");
     notifyListeners();
     restart();
   }
 
 //----------------------------------------------------------------------------
   void restart() {
-    print("restart before restart");
-    // Timer(Duration(seconds: 3), ()  {
-    //    loading();
-    // });
     Future.delayed(const Duration(seconds: 5), () async {
       await loading();
-
     });
   }
 //----------------------------------------------------------------------------
