@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
+
 
 class ConnectivityService {
   final _connectivity = Connectivity();
@@ -11,4 +11,5 @@ class ConnectivityService {
       connectivityStream.add(event);
     });
   }
+
 }

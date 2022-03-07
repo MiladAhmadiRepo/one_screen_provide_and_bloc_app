@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/BaseConstants.dart';
 
-Widget ContainBox(Widget child, {String titleText = "Tappable"}) {
+Widget ContainBox( {required Widget child,String titleText = "Tappable"}) {
   return Stack(
     children: <Widget>[
       Container(

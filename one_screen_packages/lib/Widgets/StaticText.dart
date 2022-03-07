@@ -5,13 +5,11 @@ import '../../Constants/BaseConstants.dart';
 import 'ContainBox.dart';
 
 Widget StaticText(String text) {
-  return Center(
-    child: Padding(
-      padding: const EdgeInsets.all(10),
-      child: Text(
-        text,
-        style: BaseConstants.textStyleBlue(25),
-      ),
+  return Padding(
+    padding: const EdgeInsets.all(10),
+    child: Text(
+      text,
+      style: BaseConstants.textStyleBlue(25),
     ),
   );
 }
